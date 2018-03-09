@@ -1,0 +1,49 @@
+spring:
+  application:
+    name: "Service Test"
+  datasource:
+    url: 'jdbc:postgresql://horton.elephantsql.com:5432/llkzubaj?currentSchema=public'
+    username: llkzubaj
+    password: k0GmGLW-w0kKveQYvENRRdkvbI0a5Hva
+    hikari:
+      maximum-pool-size: 2
+  flyway:
+    enabled: true
+  main:
+    web-application-type: servlet
+  jackson:
+    serialization:
+      write-dates-as-timestamps: true
+
+management:
+  endpoint:
+    health:
+      show-details: always
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+      simple:
+        enabled: false
+    web:
+      server:
+        auto-time-requests: true
+  endpoints:
+    web:
+      exposure:
+        include: env,flyway,httptrace,logfile,loggers,metrics,prometheus
+
+logging.exception-conversion-word: 'none'
+logging.pattern.console: '%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n'
+logging.pattern.file: '%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n'
+logging.file.max-history: 100
+logging.file.max-size: '10M'
+logging.pattern.level: 'DEBUG'
+logging.pattern.dateformat: '%d{HH:mm:ss.SSS}'
+
+eureka:
+  client:
+    enabled: false
+server:
+  servlet:
+    context-path: /api
